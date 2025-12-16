@@ -7,6 +7,7 @@ from app.utils.validators import validate_register, validate_login, validate_upd
 
 user_bp = Blueprint("users",__name__)
 
+# /register -> Register User
 @user_bp.route("/register",methods=["POST"])
 def register():
     is_valid, error = validate_register(request.json)
@@ -15,6 +16,7 @@ def register():
     register_user(request.json)
     return jsonify({"message":"Registrasi Berhasil"}), 201
 
+# /login -> Login User
 @user_bp.route("/login", methods=["POST"])
 def login():
     is_valid, error = validate_login(request.json)
@@ -36,6 +38,7 @@ def login():
     set_access_cookies(response, token)
     return response, 200
 
+# /me -> get active user data
 @user_bp.route("/me", methods=["GET"])
 @jwt_required()
 def get_current_user_profile():
@@ -47,13 +50,15 @@ def get_current_user_profile():
         "nama": user.nama,
         "email": user.email
     }), 200
-
+    
+# /logout -> logout and clear session
 @user_bp.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"message": "Logout berhasil"})
     unset_jwt_cookies(response)
     return response, 200
 
+# / -> get all users data
 @user_bp.route("/",methods=["GET"])
 @jwt_required()
 def all_users():
@@ -68,6 +73,8 @@ def all_users():
         for u in users
     ]), 200
 
+
+# /id -> update user data
 @user_bp.route("/<int:id>",methods=["PUT"])
 def edit_user(id):
     is_valid, error = validate_update_user(request.json)
@@ -76,23 +83,9 @@ def edit_user(id):
     update_user(id, request.json)
     return{"message" : "Data user berhasil diperbarui"}, 200
 
+# /id -> delete user data
 @user_bp.route("/<int:id>",methods=["DELETE"])
 def delete_user_route(id):
     delete_user(id)
     return {"message" : "User berhasil dihapus"}, 200
 
-@user_bp.route("/me", methods=["GET"])
-@jwt_required()
-def get_current_user():
-    current_user_id = get_jwt_identity()
-    user = get_user_by_id(int(current_user_id))
-    
-    if not user:
-        return jsonify({"message": "User tidak ditemukan"}), 404
-        
-    return jsonify({
-        "id": user.id,
-        "username": user.username,
-        "nama": user.nama,
-        "email": user.email
-    }), 200
