@@ -1,0 +1,52 @@
+* {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background: #f4fdf7;
+  margin: 0;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid #d1fae5;
+  outline: none;
+  margin-bottom: 18px;
+}
+
+input:focus {
+  border-color: #4ade80;
+}
+
+.btn-primary {
+  background: #4ade80;
+  color: white;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #22c55e;
+}
+
+.link {
+  color: #22c55e;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 16px;
+}
