@@ -48,7 +48,7 @@ Buka terminal dan clone repository ini:
 
 ```bash
 git clone https://github.com/lhanif/horus-hanif-exam
-cd hanif-horus-exam
+cd horus-hanif-exam
 ```
 ### 2. Setup Database
 #### a. Buat Database di PostgreSQL 
