@@ -9,7 +9,6 @@ lerna-debug.log*
 
 .env
 venv
-migrations
 .vscode
 node_modules
 .DS_Store
@@ -27,7 +26,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
+*.db
 *.tsbuildinfo
 *.pyc
 
